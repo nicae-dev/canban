@@ -1,0 +1,167 @@
+.canban {
+    display: flex;
+
+    * {
+        box-sizing: border-box;
+        font-family: "Comic Sans MS", "Arial", "sans-serif";
+    }
+}
+
+/* Стили для доски */
+.canban-board {
+    flex-grow: 1;
+    background-color: #c9966f;
+    border: 10px solid #eddac0;
+    box-shadow: 0px 17px 15px 4px rgba(0, 0, 0, 0.1);
+    padding: 1em;
+    margin: 1em;
+    min-height: calc(100vh - 3em);
+    min-width: 50%;
+}
+
+/* Заголовок доски */
+.canban-board-title {
+    text-align: center;
+    margin: 0;
+    color: white;
+}
+
+/* правая половина */
+.canban-right {
+    width: 300px;
+    flex-shrink: 0;
+}
+
+/* чаша прогресса */
+.canban-progress {
+    height: 500px;
+    border: 1px solid rgb(207, 207, 207);
+    border-top: none;
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    padding: 1em;
+    margin: 1em;
+    box-shadow: 1px 20px 15px 9px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(0deg, rgba(207, 207, 207, 1) 0%, rgba(232, 251, 255, 1) 100%);
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+}
+
+/* Стикеры на доске */
+.canban-stickers {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+/* Один стикер */
+.canban-sticker {
+    background-color: chartreuse;
+    width: 300px;
+    padding: 1em;
+    margin: 1em;
+    position: relative;
+
+    /* Текст внутри стикера */
+    &__text {
+        padding: 1em;
+        margin: 0;
+    }
+
+    /* галочку у стикера */
+    &__finished_button {
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 0.5em;
+        transition: all 0.5s;
+
+        /* галочку у стикера при наведении на нее курсора мышки */
+        &:hover {
+            cursor: pointer;
+            font-size: 1.5em;
+            transition: all 0.5s;
+        }
+    }
+}
+
+/* Класс, показывающий удаление стикера */
+.removing {
+    opacity: 0;
+    font-size: 0;
+    padding: 0;
+    margin: 0;
+    transition: all 1s;
+}
+
+/** Завершенный стикер в чаше */
+.canban-sticker-finished {
+    height: 14%;
+    background-image: url("../images/paper.png");
+    position: relative;
+    opacity: 1;
+    transition: all 1s;
+
+    /** Фон у завершенного стикера */
+    &__background {
+        background-color: #7adc184d;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+    }
+
+    /** Текст у завершенного стикера */
+    &__text {
+        opacity: 0;
+        transition: all 0.5s;
+
+        /** При наведении курсора мышки появляется текст у завершенного стикера  */
+        .canban-sticker-finished:hover & {
+            opacity: 1;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            padding: 0.5em;
+        }
+    }
+}
+
+/* Добавление стикеров */
+.canban-add {
+    padding: 0;
+    margin: 1em;
+
+    /* Поле ввода текста нового стикера */
+    & textarea {
+        width: 100%;
+        height: 250px;
+        padding: 1em;
+        margin: 1em 0;
+        border: none;
+        border-radius: 0;
+        transition: all 0.5s;
+        box-shadow: inset 0 0 0 300px chartreuse;
+    }
+}
+
+/* Кнопка добавления нового стикера */
+.button {
+    padding: 1em;
+    margin: 0;
+    width: 100%;
+    background-color: #c9966f;
+    transition: all 0.5s;
+    border: none;
+    border-radius: 0.5em;
+    text-transform: uppercase;
+
+    /* Кнопка добавления при наведении мышки увеличивается */
+    &:hover {
+        background-color: #c9966f;
+        font-size: 1.1em;
+        transition: all 0.5s;
+    }
+}
