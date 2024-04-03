@@ -1,5 +1,11 @@
+body {
+    background-color: #f7ecdd;
+}
+
 .canban {
     display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
 
     * {
         box-sizing: border-box;
@@ -12,36 +18,48 @@
     flex-grow: 1;
     background-color: #c9966f;
     border: 10px solid #eddac0;
-    box-shadow: 0px 17px 15px 4px rgba(0, 0, 0, 0.1);
-    padding: 1em;
+    box-shadow: -1px 14px 0px 2px rgb(0 0 0 / 29%);
     margin: 1em;
-    min-height: calc(100vh - 3em);
-    min-width: 50%;
+    height: calc(100vh - 3em);
+    width: min-content;
 }
 
 /* Заголовок доски */
 .canban-board-title {
     text-align: center;
     margin: 0;
+    padding: 1em;
     color: white;
 }
 
 /* правая половина */
 .canban-right {
-    width: 300px;
     flex-shrink: 0;
+}
+
+@media (max-width: 992px) {
+    .canban-board {
+        min-height: fit-content;
+        width: 100%;
+    }
+
+    .canban-right {
+        width: 100%;
+        display: flex;
+    }
 }
 
 /* чаша прогресса */
 .canban-progress {
     height: 500px;
+    width: 300px;
     border: 1px solid rgb(207, 207, 207);
     border-top: none;
     border-bottom-left-radius: 1em;
     border-bottom-right-radius: 1em;
     padding: 1em;
     margin: 1em;
-    box-shadow: 1px 20px 15px 9px rgba(0, 0, 0, 0.1);
+    box-shadow: -2px 6px 0px 2px rgba(0, 0, 0, 0.29);
     background: linear-gradient(0deg, rgba(207, 207, 207, 1) 0%, rgba(232, 251, 255, 1) 100%);
     display: flex;
     flex-direction: column-reverse;
@@ -54,6 +72,29 @@
     align-items: baseline;
     flex-wrap: wrap;
     justify-content: space-around;
+    overflow-y: scroll;
+    height: 90%;
+
+
+}
+
+.canban-stickers::-webkit-scrollbar {
+    width: 10px;
+    /* ширина всей полосы прокрутки */
+}
+
+.canban-stickers::-webkit-scrollbar-track {
+    background: #fff;
+    /* Цвет дорожки */
+}
+
+.canban-stickers::-webkit-scrollbar-thumb {
+    background-color: #261805;
+    /* Цвет бегунка */
+    border-radius: 20px;
+    /* Округление бегунка */
+    border: 3px solid #261805;
+    /* Оформление границ бегунка */
 }
 
 /* Один стикер */
@@ -68,6 +109,7 @@
     &__text {
         padding: 1em;
         margin: 0;
+        word-break: break-word;
     }
 
     /* галочку у стикера */
@@ -82,9 +124,30 @@
         /* галочку у стикера при наведении на нее курсора мышки */
         &:hover {
             cursor: pointer;
-            font-size: 1.5em;
-            transition: all 0.5s;
+            animation-name: light-rotation;
+            animation-duration: 0.5s;
+            animation-iteration-count: 1;
         }
+    }
+}
+
+@keyframes light-rotation {
+    25% {
+        transform: rotate(10deg);
+    }
+
+    75% {
+        transform: rotate(-10deg);
+    }
+}
+
+@keyframes light-scale {
+    25% {
+        transform: scale(110%);
+    }
+
+    75% {
+        transform: scale(100%);
     }
 }
 
@@ -94,6 +157,7 @@
     font-size: 0;
     padding: 0;
     margin: 0;
+    height: 0;
     transition: all 1s;
 }
 
@@ -102,8 +166,8 @@
     height: 14%;
     background-image: url("../images/paper.png");
     position: relative;
+    animation: light-scale 1s 1;
     opacity: 1;
-    transition: all 1s;
 
     /** Фон у завершенного стикера */
     &__background {
@@ -132,36 +196,38 @@
 /* Добавление стикеров */
 .canban-add {
     padding: 0;
-    margin: 1em;
-
-    /* Поле ввода текста нового стикера */
-    & textarea {
-        width: 100%;
-        height: 250px;
-        padding: 1em;
-        margin: 1em 0;
-        border: none;
-        border-radius: 0;
-        transition: all 0.5s;
-        box-shadow: inset 0 0 0 300px chartreuse;
-    }
+    margin: 2em 1em;
+    width: 300px;
 }
+
+/* Поле ввода текста нового стикера */
+.sticker-textarea {
+    width: 100%;
+    height: 250px;
+    padding: 1em;
+    border: none;
+    border-radius: 0;
+    transition: all 0.5s;
+    background-color: chartreuse;
+    box-shadow: -1px 3px 0px 1px rgba(0, 0, 0, 0.29);
+}
+
 
 /* Кнопка добавления нового стикера */
 .button {
     padding: 1em;
-    margin: 0;
+    margin: 1em 0;
     width: 100%;
     background-color: #c9966f;
     transition: all 0.5s;
     border: none;
     border-radius: 0.5em;
     text-transform: uppercase;
+    margin: 5px 0;
 
     /* Кнопка добавления при наведении мышки увеличивается */
     &:hover {
-        background-color: #c9966f;
-        font-size: 1.1em;
-        transition: all 0.5s;
+        transition: transform 0.5s;
+        transform: scale(110%);
     }
 }

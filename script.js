@@ -15,7 +15,6 @@ loadState();
 
 //Найдем элемент с идентификатором add-sticker-button - это кнопка добавлния нового стикера
 const add_sticker_button = document.querySelector('#add-sticker-button');
-//Добавим обработчик нажатия кнопки добавлния нового стикера
 add_sticker_button.addEventListener('click', () => {
     const new_sticker_text = document.querySelector('#new-sticker-text');
     new_text = new_sticker_text.value;
@@ -51,12 +50,12 @@ function show_sticker_on_canban(new_text, index) {
 
     //Укажем для стикера элементы для вывода текста и кнопки-галочки
     sticker.innerHTML = "<p class='canban-sticker__text'>" + new_text + "</p>";
-    sticker.innerHTML += "<a class='canban-sticker__finished_button' id='canban-sticker__finished_button-" + index + "' stickerIndex=" + index + ">&#10003;</a>";
+    sticker.innerHTML += "<a class='canban-sticker__finished_button' id='canban-sticker__finished_button-" + index + "' stickerIndex=" + index + " title='Задача сделана!'>&#10003;</a>";
 
     //Добавим стикера как HTML-элемент на доску
     stickers.append(sticker);
 
-    //Добавим на кнопку-галочку обработчик клика по ней. Обработчик вызовет функцию move_sticker_to_progress(), которая переместит стикер с доски в чашу и из массива стикеров в массив завершенных стикеров. Затем функция saveState() сохранит текущее состояние в память браузера
+    //Добавим на кнопку-галочку обработчик клика по ней.
     const finished_button = document.querySelector('#canban-sticker__finished_button-' + index);
     finished_button.addEventListener('click', function (e) {
         let sticker_index = e.target.getAttribute("stickerIndex");
@@ -71,17 +70,17 @@ function move_sticker_to_progress(sticker, index) {
 
     //1. убираем стикер с доски плавно в течение 1 секунды
     sticker.classList.add("removing");
-    setTimeout(() => sticker.remove(), 1000);
+    setTimeout(() => {
+        sticker.remove();
+        //2. добавляем стикер в массив заверешнных стикеров и отображаем в чаше
+        add_sticker_on_progress(index);
+        count_finished_stickers++;
+        //3. убираем стикер из массива стикеров
+        delete stickers_text[index];
 
-    //2. добавляем стикер в массив заверешнных стикеров и отображаем в чаше
-    add_sticker_on_progress(index);
-
-    //3. убираем стикер из массива стикеров
-    delete stickers_text[index];
-    count_finished_stickers++;
-
-    //Проверяем, не заполнилась ли чаша?
-    is_max_finished_stickers();
+        //Проверяем, не заполнилась ли чаша?
+        is_max_finished_stickers();
+    }, 1000);
 }
 
 //Функция проверки заполненности чаши завершенными стикерами.
