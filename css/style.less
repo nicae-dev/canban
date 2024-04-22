@@ -74,25 +74,23 @@ body {
     justify-content: space-around;
     overflow-y: scroll;
     height: 90%;
-}
 
-.canban-stickers::-webkit-scrollbar {
-    width: 10px;
-    /* ширина всей полосы прокрутки */
-}
+    /* полосf прокрутки */
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
 
-.canban-stickers::-webkit-scrollbar-track {
-    background: transparent;
-    /* Цвет дорожки */
-}
+    /* дорожка */
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
 
-.canban-stickers::-webkit-scrollbar-thumb {
-    background-color: #261805;
-    /* Цвет бегунка */
-    border-radius: 20px;
-    /* Округление бегунка */
-    border: 3px solid #261805;
-    /* Оформление границ бегунка */
+    /* Бегунок */
+    &::-webkit-scrollbar-thumb {
+        background-color: #261805;
+        border-radius: 20px;
+        border: 3px solid #261805;
+    }
 }
 
 /* Один стикер */
@@ -209,7 +207,6 @@ body {
     background-color: chartreuse;
     box-shadow: -1px 3px 0px 1px rgba(0, 0, 0, 0.29);
 }
-
 
 /* Кнопка добавления нового стикера */
 .button {
