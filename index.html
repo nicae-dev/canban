@@ -5,18 +5,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Канбан доска</title>
+    <link rel="icon" href="images/logo.png" type="image/x-icon">
     <link rel="stylesheet/less" href="css/style.less">
-    <script>
+    <link rel="stylesheet" href="css/common-styles.css">
+    <!-- <script type="text/javascript" src="https://gc.kes.v2.scr.kaspersky-labs.com/7EA5E9BB-55E1-4C31-9C21-4943DDFED2E4/main.js?attr=73pDOX4Pohg8MZ0QPLJ_UxfQkFVIMsUpfqXQHRVLy7YLCi23XFRrgcAyppmGH79q7rXGpU_ZyTYJcHe1pKNhAaml846SixL8xdhmDJxhh1w" charset="UTF-8"></script><script>
         less = {
           env: "development"
         };
-      </script>
-	<script src="less/less.js" type="text/javascript"></script>
+      </script> -->
+    <script src="less/less.js" type="text/javascript"></script>
 </head>
 
 <body>
-    <header></header>
+    <header class="header">
+        <div class="profile">
+            <a href="..">
+                <img src="images/profile-image.jpg" alt="" class="profile__image">
+            </a>
+            <div class="profile__content">
+                <h1 class="profile__content__name">Ефимова Ника</h1>
+                <h2 class="profile__content__desc">Веб-разработчик</h2>
+            </div>
+            <details class="heading">
+                <summary>Доска с задачами</summary>
+                <p>
+                    На доске будут расположены добавленные вами стикеры. (Если лень придумывать задачу - можно
+                    сгенерировать случайную)
+                </p>
+                <p>
+                    Можно отметить задачу как выполненную, нажав на галочку на стикере. Она переместиться в чашу
+                    выполненных задач.
+                </p>
+                <p>
+                    Когда в чаше накопится 7 выполненных задач, то она очистится, а вас похвалят за нелегкий труд.
+                </p>
+                <p>
+                    Текущее состояние доски с задачами сохраняется в кеш браузера.
+                </p>
+            </details>
+        </div>
+    </header>
     <main>
+
         <div class="canban">
             <div class="canban-board">
                 <h3 class="canban-board-title">Текущие задачи</h3>
@@ -38,7 +68,18 @@
             </div>
         </div>
     </main>
-    <footer></footer>
+    <footer class="footer">
+        <div class="footer-row">
+            <div class="footer-row__column">
+                Ника Ефимова, 2024
+            </div>
+            <div class="footer-row__column">
+                <a href="https://github.com/nicae-dev/canban" class="link">
+                    <img src="../images/github.png" alt="" class="icon">Этот проект на git
+                </a>
+            </div>
+        </div>
+    </footer>
     <script src="script.js"></script>
     <script src="generate.js"></script>
 

@@ -1,0 +1,112 @@
+body {
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+main {
+    flex-grow: 1;
+}
+
+.header {
+    background-color: #434343;
+}
+
+.profile {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem;
+    color: #fff;
+}
+
+.profile__image {
+    margin: 0 1rem;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50%;
+    border-color: #fff;
+    border-width: 5px;
+    border-style: solid;
+    height: 150px;
+}
+
+.profile__image:hover{
+    content: url(../images/logo.png);
+}
+
+.profile__content {
+    margin: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.profile__content__desc{
+    flex-grow: 1;
+    margin-top: 0.5rem;
+}
+.footer {
+    background-color: #434343;
+}
+
+.footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.footer-row__column {
+    padding: 1rem;
+    text-align: center;
+    color: #fff;
+}
+
+.link {
+    color: #fff;
+    background-color: #434343;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    transition: filter 0.5s, color 0.5s;
+    border: 0.1rem solid #535353;
+    text-decoration: none;
+}
+
+.link:hover {
+    filter: invert(1);
+}
+
+.icon {
+    vertical-align: text-bottom;
+    height: 1.2rem;
+    margin-right: 0.5rem;
+}
+
+.heading {
+    padding: 0.5rem;
+    flex-grow: 1;
+
+    summary {
+        font-size: 1.5rem;
+    }
+    p{
+        margin-top: 0.5rem;
+    }
+}
+.menu{
+    display: inline-block;
+    padding: 1rem 0;
+}
+
+@media (max-width: 768px) {
+    .profile {
+        margin: 0.5rem;
+    }
+    .profile__image {
+        margin: 0 1rem 0 .5rem;
+        height: 100px;
+    }    
+    .profile__content {
+        margin: 0 .5rem;
+    }
+}
